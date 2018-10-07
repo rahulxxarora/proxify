@@ -1,7 +1,6 @@
 package httpservice
 
 import (
-	"fmt"
 	"io"
 	"net"
 	"net/http"
@@ -13,16 +12,12 @@ var (
 )
 
 func init() {
-	fmt.Println("Initializing HTTP client...")
-
 	httpClient = &http.Client{
 		Transport: &http.Transport{
 			MaxIdleConnsPerHost: 5,
 		},
 		Timeout: 10 * time.Second,
 	}
-
-	fmt.Println("HTTP client initialized...")
 }
 
 func MakeProxyHTTPReqest(w http.ResponseWriter, r *http.Request) {
