@@ -4,6 +4,7 @@ import (
 	"crypto/tls"
 	"fmt"
 	"net/http"
+	"strconv"
 
 	. "proxify/controllers"
 	_ "proxify/httpservice"
@@ -12,10 +13,10 @@ import (
 
 type App struct {
 	addr string
-	port string
+	port int
 }
 
-func (a *App) Initialize(addr string, port string) {
+func (a *App) Initialize(addr string, port int) {
 	fmt.Println("Initializing app...")
 
 	a.addr = addr
@@ -25,10 +26,10 @@ func (a *App) Initialize(addr string, port string) {
 }
 
 func (a *App) Run() {
-	fmt.Printf("HTTP server listening on %s:%s...\n", a.addr, a.port)
+	fmt.Printf("HTTP server listening on %s:%d...\n", a.addr, a.port)
 
 	server := &http.Server{
-		Addr: a.addr + ":" + a.port,
+		Addr: a.addr + ":" + strconv.Itoa(a.port),
 		Handler: http.HandlerFunc(ErrorHandler(func(w http.ResponseWriter, r *http.Request) {
 			if r.Method == http.MethodConnect {
 				HandleHTTPS(w, r)

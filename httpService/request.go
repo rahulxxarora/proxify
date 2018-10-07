@@ -55,16 +55,6 @@ func MakeProxyHTTPReqest(w http.ResponseWriter, r *http.Request) {
 	response.Body.Close()
 }
 
-func setConnectionToDestination(r *http.Request) net.Conn {
-	dest_conn, err := net.DialTimeout("tcp", r.Host, 10*time.Second)
-
-	if err != nil {
-		panic(err)
-	}
-
-	return dest_conn
-}
-
 func MakeProxyHTTPSReqest(w http.ResponseWriter, r *http.Request) {
 	dest_conn := setConnectionToDestination(r)
 	w.WriteHeader(http.StatusOK)
@@ -81,6 +71,16 @@ func MakeProxyHTTPSReqest(w http.ResponseWriter, r *http.Request) {
 
 	go transfer(dest_conn, client_conn)
 	go transfer(client_conn, dest_conn)
+}
+
+func setConnectionToDestination(r *http.Request) net.Conn {
+	dest_conn, err := net.DialTimeout("tcp", r.Host, 10*time.Second)
+
+	if err != nil {
+		panic(err)
+	}
+
+	return dest_conn
 }
 
 func transfer(destination io.WriteCloser, source io.ReadCloser) {
