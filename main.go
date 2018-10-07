@@ -2,7 +2,8 @@ package main
 
 import (
 	"flag"
-	. "proxify/app"
+
+	. "github.com/rahulxxarora/proxify/app"
 )
 
 func main() {

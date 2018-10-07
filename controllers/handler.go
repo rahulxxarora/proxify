@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"proxify/httpservice"
+	"github.com/rahulxxarora/proxify/httpservice"
 )
 
 func HandleHTTP(w http.ResponseWriter, r *http.Request) {

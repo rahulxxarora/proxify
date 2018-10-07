@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"strconv"
 
-	. "proxify/controllers"
-	_ "proxify/httpservice"
-	. "proxify/middlewares"
+	. "github.com/rahulxxarora/proxify/controllers"
+	_ "github.com/rahulxxarora/proxify/httpservice"
+	. "github.com/rahulxxarora/proxify/middlewares"
 )
 
 type App struct {
