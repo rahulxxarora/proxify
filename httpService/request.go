@@ -3,6 +3,7 @@ package httpservice
 import (
 	"fmt"
 	"io"
+	"net"
 	"net/http"
 	"time"
 )
@@ -16,7 +17,7 @@ func init() {
 
 	httpClient = &http.Client{
 		Transport: &http.Transport{
-			MaxIdleConnsPerHost: 20,
+			MaxIdleConnsPerHost: 5,
 		},
 		Timeout: 10 * time.Second,
 	}
@@ -52,4 +53,14 @@ func MakeProxyHTTPReqest(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(response.StatusCode)
 	io.Copy(w, response.Body)
 	response.Body.Close()
+}
+
+func SetConnectionToDestination(r *http.Request) net.Conn {
+	dest_conn, err := net.DialTimeout("tcp", r.Host, 10*time.Second)
+
+	if err != nil {
+		panic(err)
+	}
+
+	return dest_conn
 }
