@@ -7,10 +7,11 @@ before_deploy:
   - "GOOS=darwin GOARCH=amd64 go build -o release/proxify-v$VERSION-darwin-amd64"
 deploy:
   provider: releases
-  api_key: c04ff175b53ee537ffd74b486f0b95f763969860
+  api_key:
+    secure: c04ff175b53ee537ffd74b486f0b95f763969860
   file:
-    - "release/gucci-v$VERSION-linux-amd64"
-    - "release/gucci-v$VERSION-darwin-amd64"
+    - "release/proxify-v$VERSION-linux-amd64"
+    - "release/proxify-v$VERSION-darwin-amd64"
   skip_cleanup: true
   on:
     tags: true
