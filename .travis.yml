@@ -7,6 +7,8 @@ before_deploy:
   - "GOOS=darwin GOARCH=amd64 go build -o release/proxify-v$VERSION-darwin-amd64"
 deploy:
   provider: releases
+  api_key:
+    secure: w+jySomaoBRUYoC9Ziu94oCBLiWpT4y7FjVXB8mOIuNYvI3AgMHKvU3Ejn3nqtG3GUVRo6zi/jXzD23vdiarfFa2fX6DvO1EM3XZ8/nAWFNXjfProEnHmqrxl9AZIa6UOlQSXu7JaDisBVcom1aNsZFteK4A9v13m9TjXgh03/IAOfpSIuJ/ENB0oLW3lSbydEZgdEkNKww4tPpPj7gaelvKie94sPP8dC18fJhCAyn1uUOboziaLKyFzY5w+lqkSeJzHPmN9lSdt8P8xvJzzODaWa9rI2DiX4oqeOb1dLSuJxt8EK+7787XNRxCHudoofzFsxsCpsrF9ar9OTgBY3eBo0G+rC4jiratQmZ7MfgwuAQsnta2FURkOZHuMzNGjNBiXYoiPZ67SFIbS9LNfnhPR1I1Io5znTDQSkvsEnIOjSLurWJ0q/xarftAB826MdPKJrPvt2S6HBqEIHMBjm92Rm0u1/CZafNj/dPjVfU/4Jtlk77mURmoXNCD2+TN90edyqx4Fu6EzRr3/9FCMk08Nj59da5W7F6MPqb2vlzrOtByc67cD+jLATZebacgSTkS4zoVXjRSRD5SXyMIhpWKbOe4YUQQTbzY3yU25EVJf2y5xuwQrvQrjmlzAGYeDH9n5GOsfMHb0NuvJKDzMXPmzNtWyZlqf0GNwP0gwbE=
   file:
     - "release/gucci-v$VERSION-linux-amd64"
     - "release/gucci-v$VERSION-darwin-amd64"
