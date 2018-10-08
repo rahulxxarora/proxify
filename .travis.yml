@@ -1,5 +1,15 @@
 language: go
 go:
   - 1.11
-script:
-  - go build
+before_deploy:
+  - mkdir -p release
+  - "GOOS=linux  GOARCH=amd64 go build -o release/proxify-v$VERSION-linux-amd64"
+  - "GOOS=darwin GOARCH=amd64 go build -o release/proxify-v$VERSION-darwin-amd64"
+deploy:
+  provider: releases
+  file:
+    - "release/gucci-v$VERSION-linux-amd64"
+    - "release/gucci-v$VERSION-darwin-amd64"
+  skip_cleanup: true
+  on:
+    tags: true
